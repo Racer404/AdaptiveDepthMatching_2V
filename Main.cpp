@@ -11,7 +11,7 @@ Mat Left;
 Mat Right;
 Mat depthMap;
 
-int main(int a) {
+int main() {
 
 	String inputName = "Sculpture";
 	int detailLevel = 4;
@@ -45,7 +45,7 @@ int main(int a) {
 	sM.inputGrayScale(LeftGrayScale, RightGrayScale);
 	sM.setPatchSize(10);
 	sM.matchMethod(1);
-	sM.setGraySumMethod(3);
+	sM.setGraySumMethod(2);
 
 	stereoMatching outputsM;
 	outputsM.inputGrayScale(LeftGrayScale, RightGrayScale);
@@ -58,7 +58,7 @@ int main(int a) {
 
 		vector<Vec2i> disparityArray;
 		for (int width = 0; width < Left.cols; width++) {
-			int Z = width - sM.match(width, height);
+			int Z = width - sM.match(width, height)[0];
 			bool ifDisExists = false;
 			for (int i = 0; i < disparityArray.size(); i++) {
 				if (Z == disparityArray[i][0]) {
@@ -90,7 +90,7 @@ int main(int a) {
 		outputsM.setMajorDis(majorDis);
 
 		for (int width = 0; width < Left.cols; width++) {
-			int Z = width - outputsM.match(width, height);
+			int Z = width - outputsM.match(width, height)[0];
 			depthMap.at<Vec3b>(height, width)[0] = Z;
 			depthMap.at<Vec3b>(height, width)[1] = Z;
 			depthMap.at<Vec3b>(height, width)[2] = Z;
@@ -104,8 +104,9 @@ int main(int a) {
 
 	//RENDERING
 	float averageDis = (float)totalDis / (float)(Left.cols * Left.rows);
-	float a = 0;
-	a = (float)128 / (float)(averageDis);
+
+	float a = (float)128 / (float)(averageDis);
+
 	for (int width = 0; width < Left.cols; width++) {
 		for (int height = 0; height < Left.rows; height++) {
 			int Z = depthMap.at<Vec3b>(height, width)[0] * a;

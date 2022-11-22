@@ -28,5 +28,5 @@ public:
 	//Vec2f getSlopeAt(int patchSize, int j);
 	void inputGrayScale(vector<vector<int>> inputLeft, vector<vector<int>> inputRight);
 	void matchMethod(int methodIndex);
-	int match(int xPixel, int yPixel);
+	vector<int> match(int xPixel, int yPixel);
 };

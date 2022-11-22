@@ -33,7 +33,7 @@ void stereoMatching::matchMethod(int methodIndex) {
 //	return Vec2f(1,2);
 //}
 
-int stereoMatching::match(int xPixel, int yPixel) {
+vector<int> stereoMatching::match(int xPixel, int yPixel) {
 	if (matchingMethod == 1) {
 		float lowestDifference = 9999999;
 		int indexOfLowestDifference = 0;
@@ -123,7 +123,10 @@ int stereoMatching::match(int xPixel, int yPixel) {
 			}
 		}
 		
-		return indexOfLowestDifference;
+		vector<int> resultVector;
+		resultVector.push_back(indexOfLowestDifference);
+		resultVector.push_back(lowestDifference);
+		return resultVector;
 	}
 
 
@@ -237,6 +240,9 @@ int stereoMatching::match(int xPixel, int yPixel) {
 				}
 			}
 		}
-		return indexOfLowestDifference;
+		vector<int> resultVector;
+		resultVector.push_back(indexOfLowestDifference);
+		resultVector.push_back(lowestDifference);
+		return resultVector;
 	}
 }

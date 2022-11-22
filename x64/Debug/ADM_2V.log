@@ -1,0 +1,5 @@
+﻿  Main.cpp
+D:\Vs2022\ADM_2V\Main.cpp(35,22): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+D:\Vs2022\ADM_2V\Main.cpp(36,23): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+D:\Vs2022\ADM_2V\Main.cpp(112,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  ADM_2V.vcxproj -> D:\Vs2022\ADM_2V\x64\Debug\ADM_2V.exe
